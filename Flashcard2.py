@@ -17,6 +17,12 @@ except FileNotFoundError:
     data = pandas.read_csv("./data/chem1.csv")
 finally:
     flash_cards_to_learn = data.to_dict(orient="records")
+try:
+    data = pandas.read_csv("./data/periodic_table.csv")
+except FileNotFoundError:
+    data = pandas.read_csv("./data/periodic_table1.csv")
+finally:
+    flash_cards_to_learn1 = data.to_dict(orient="records")
 # ---------------------------- NEXT CARD ------------------------------- #
 
 
@@ -98,4 +104,4 @@ right_btn = Button(image=right_btn_img, highlightthickness=0, command=update_fla
 right_btn.grid(row=1, column=1)
 
 next_card()
-window.mainloop()
+root.mainloop()
