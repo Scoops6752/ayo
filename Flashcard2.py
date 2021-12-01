@@ -1,6 +1,9 @@
 from tkinter import *
 import pandas
 import random
+from tkinter.filedialog import askopenfilename
+import tkinter as tk
+
 
 BACKGROUND_COLOR = "#B1DDC6"
 current_card = {}
@@ -23,7 +26,7 @@ def next_card():
 
    current_card = random.choice(flash_cards_to_learn)
    flip_card(card_front_img, 'front', 'black')
-   waiting_to_flip = window.after(3000, flip_card, card_back_img, 'back', 'white')
+   waiting_to_flip = window.after(5000, flip_card, card_back_img, 'back', 'white')
 
 # ---------------------------- FLIP CARD ------------------------------- #
 
@@ -45,13 +48,35 @@ def update_flash_cards_to_learn():
 
 
 window = Tk()
-window.title("Learn Chemistry with Flashcards")
+window.title("Learn with Flashcards")
 window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
 
 card_front_img = PhotoImage(file="./pictures/card_front.png")
 card_back_img = PhotoImage(file="./pictures/card_back.png")
 
-waiting_to_flip = window.after(3000, flip_card, card_back_img, 'back', 'white')
+waiting_to_flip = window.after(5000, flip_card, card_back_img, 'back', 'white')
+
+
+def import_csv_data():
+    global v
+    csv_file_path = askopenfilename()
+    print(csv_file_path)
+    v.set(csv_file_path)
+    df = pandas.read_csv(csv_file_path)
+
+root = tk.Tk()
+tk.Label(root, text='File Path').grid(row=0, column=0)
+v = tk.StringVar()
+entry = tk.Entry(root, textvariable=v).grid(row=0, column=1)
+tk.Button(root, text='Browse Data Set',command=import_csv_data).grid(row=1, column=0)
+tk.Button(root, text='Close',command=root.destroy).grid(row=1, column=1)
+root.mainloop()
+
+
+
+
+
+
 
 # GRID
 # row 1
