@@ -63,7 +63,7 @@ word = flashcard.create_text(400, 265, text="", font=("Helvetica", 55, "bold"))
 
 flashcard.grid(row=0, column=0, columnspan=2)
 
-# row 2
+# row 2 add difficulty function for how many times counted
 wrong_btn_img = PhotoImage(file="./pictures/wrong.png")
 wrong_btn = Button(image=wrong_btn_img, highlightthickness=0, command=next_card)
 wrong_btn.grid(row=1, column=0)
